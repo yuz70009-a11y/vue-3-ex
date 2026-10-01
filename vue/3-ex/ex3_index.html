@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Alphabet</title>
+</head>
+
+<body>
+
+<div id="app">
+
+    <button @click="add10">10増える</button>
+    <img src="./images/top_coin01.PNG"width="100" alt="Cat">
+    <button @click="add100">100増える</button>
+    <img src="./images/top_coin02.PNG" width="100" alt="Cat">
+    <button @click="clear">初期化</button>
+    <p>
+        10を{{ count10 }}回、100を{{ count100 }}回加算
+    </p>
+
+    <p>{{ count }}</p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
+<script src="./scrip/ex3_script.js"></script>
+
+</body>
+
+</html>

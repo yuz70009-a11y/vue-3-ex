@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Alphabet</title>
+</head>
+
+<body>
+
+<div id="app">
+    <p>現在の値: {{ count }}</p>
+    <p>増減する値: {{ changeValue }}</p>
+
+    <button @click="increment">+1</button>
+    <button @click="decrement">-1</button><br>
+    <button @click="countUp">増やす</button>
+    <button @click="countDown">減らす</button><br>
+    <button @click="reset">リセット</button>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
+<script src="./scrip/ex4_script.js"></script>
+
+</body>
+
+</html>
