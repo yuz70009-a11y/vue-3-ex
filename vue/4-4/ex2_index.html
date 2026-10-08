@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js 練習問題</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <textarea type="text" v-model="name"></textarea>
+
+        <p>入力している文章は、「{{ name }}」です</p><br>
+        <p>文字数は、{{ name.length }}文字です</p>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
+    <script src="./script/ex2_script.js"></script>
+
+</body>
+</html>
