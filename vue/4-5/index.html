@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <!--アイコンを使用する場合に読み込むCDN-->
+    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" defer></script>
+
+    <!-- BulmaのCSSの読み込み -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+    <title></title>
+</head>
+
+<body>
+    <div id="app" class="m-4">
+
+        <div class="field">
+            <div class="control">
+                <span class="icon is-small">
+                    <i class="fas fa-smile"></i>
+                </span>
+                <span>名前</span>
+
+                <p><input
+                    type="text"
+                    name="name1"
+                    v-model="name"
+                /></p>
+
+                <p
+                    v-if="isInValidName"
+                    class="has-text-danger">
+                    名前は4文字以上で入力してください
+                </p>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <span class="icon is-small">
+                    <i class="fas fa-phone"></i>
+                </span>
+                <span>電話番号</span>
+
+                <p><input
+                    type="tel"
+                    name="tel1"
+                    v-model="tel"
+                /></p>
+
+                <p
+                    v-if="isInValidTel"
+                    class="has-text-danger">
+                    電話番号は数字8文字以上で入力してください
+                </p>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <span class="icon is-small">
+                    <i class="fas fa-envelope"></i>
+                </span>
+                <span>Eメールアドレス</span>
+
+                <p><input
+                    type="text"
+                    name="email1"
+                    v-model="email"
+                /></p>
+
+                <p
+                    v-if="isInValidEmail"
+                    class="has-text-danger">
+                    Eメールアドレスの形式で入力してください
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script/script.js"></script>
+
+</body>
+</html>
