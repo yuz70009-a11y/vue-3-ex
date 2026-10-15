@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>人数と合計金額</title>
+</head>
+<body>
+    <div id="app">
+        <p>人数を入力してください</p>
+
+        <button @click="ninzu++">+1</button>
+        <button @click="ninzu--">-1</button>
+        {{ ninzu }}人
+
+        <p>単価を選択してください</p>
+
+        <input type="radio" v-model="tanka" :value="1000">1000
+        <input type="radio" v-model="tanka" :value="1500">1500
+
+        <p>----------------</p>
+
+        <button @click="multiply">合計</button>
+        {{ kei }}円
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./script/ex2_script.js"></script>
+</body>
+</html>

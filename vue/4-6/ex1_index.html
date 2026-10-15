@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>人数カウンター</title>
+</head>
+<body>
+    <div id="app">
+        <p>人数を入力してください</p>
+
+        <button @click="ninzu++">+1</button>
+        <button @click="ninzu--">-1</button>
+
+        {{ ninzu }}人
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./script/ex1_script.js"></script>
+</body>
+</html>

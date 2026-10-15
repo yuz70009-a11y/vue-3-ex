@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js 練習問題</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <input type="checkbox" v-model="name">チェックボックスは{{ name }}です<br>
+        <p v-if="name"> チェックボックスはON</p>
+        <p v-else>
+            チェックボックスはOFF
+        </p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
+    <script src="./script/ex4_script.js"></script>
+
+</body>
+</html>
