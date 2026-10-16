@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>本のリスト</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app" class="section">
+        <div class="columns">
+
+            <div class="column">
+                <div class="box">
+                    <h2 class="title is-5">
+                        <span class="icon">
+                            <i class="fas fa-book"></i>
+                        </span>
+                        本のリスト
+                        <span class="icon">
+                            <i class="fas fa-book"></i>
+                        </span>
+                    </h2>
+
+                    <p v-for="(book, index) in books" :key="index">
+                        {{ book.title }}（{{ book.author }}） - {{ book.price }}円
+                    </p>
+                </div>
+            </div>
+
+            <div class="column">
+                <table class="table is-bordered is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>title</th>
+                            <th>author</th>
+                            <th>price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(book, index) in books" :key="index">
+                            <td>{{ book.id }}</td>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.author }}</td>
+                            <td>{{ book.price }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./script/ex2_script.js"></script>
+</body>
+</html>
