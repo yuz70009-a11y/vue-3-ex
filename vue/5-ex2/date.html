@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>DATE</title>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app" class="container mt-5">
+
+    <nav class="navbar has-background-light">
+      <div class="navbar-menu is-active">
+        <div class="navbar-start">
+          <a v-for="menu in menus"
+             :href="menu.url"
+             class="navbar-item">
+            {{ menu.name }}
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content mt-4">
+      <ul>
+        <li>date : {{ obj.date }}</li>
+        <li>time : {{ obj.time }}</li>
+        <li>place : {{ obj.place }}</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script src="index/script.js"></script>
+</body>
+</html>
