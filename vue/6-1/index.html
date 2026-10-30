@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>色を変化させるアプリ</title>
+</head>
+<body>
+    <div id="app">
+        <p>
+            <span>大きさ：</span>
+            <input v-model="range" type="range" max="500" min="10" />{{range}}
+        </p>
+        <p>
+            <span>赤：</span>
+            <input v-model="red" type="range" max="255" min="0" />{{red}}
+        </p>
+        <p>
+            <span>緑：</span>
+            <input v-model="green" type="range" max="255" min="0" />{{green}}
+        </p>
+        <p>
+            <span>青：</span>
+            <input v-model="blue" type="range" max="255" min="0" />{{blue}}
+        </p>
+
+        <div :style="bindStyle"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
+    <script src="./script/script.js"></script>
+</body>
+</html>
+
