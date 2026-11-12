@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODOアプリ</title>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input
+            type="text"
+            v-model="newTodo"
+            placeholder="please input todo"
+        >
+
+        <button @click="addTodo">ADD TODO</button>
+
+        <p>incomplete items</p>
+
+        <ul>
+            <li v-for="(todo, index) in todos" :key="index">
+                {{ todo }}
+            </li>
+        </ul>
+    </div>
+
+    <script src="./script/script.js"></script>
+</body>
+</html>
