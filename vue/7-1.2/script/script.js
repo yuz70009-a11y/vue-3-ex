@@ -2,8 +2,8 @@ const app = Vue.createApp({
     data() {
         return {
             newTodo: "",
-            todos: [],
-            completeTodos: []
+            todos: ["洗濯をする", "犬の散歩をする"],
+            completeTodos: ["買い物をする"]
         };
     },
 

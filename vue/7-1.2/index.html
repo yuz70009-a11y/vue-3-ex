@@ -3,104 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
     <title>TODOアプリ | 7-1.2</title>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <style>
-        .todo-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .todo-list li {
-            margin: 0;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .todo-list li:last-child {
-            border-bottom: 0;
+        html, body { min-height: 100vh; background: #fff; color: #4a4a4a; color-scheme: light; }
+        [v-cloak] { display: none; }
+        .todo-app { width: 97%; padding: 40px 8px 44px; }
+        .todo-entry { display: flex; gap: 12px; margin-bottom: 10px; }
+        .todo-entry .control.is-expanded { flex: 1; min-width: 0; }
+        .todo-entry .input { height: 38px; border-color: #00d1b2; box-shadow: none; }
+        .todo-entry .button { height: 38px; background: #00cbb2; border-color: transparent; color: #fff; }
+        .todo-columns { margin: 0; }
+        .todo-column { padding: 0 10px; min-width: 0; }
+        .todo-heading { margin-bottom: 19px; color: #363636; font-size: 24px; font-weight: 600; text-align: center; line-height: 1.25; }
+        .todo-list { list-style: none; margin: 0; padding: 0; border-radius: 4px; box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1); }
+        .todo-row { display: flex; align-items: center; min-height: 30px; margin-bottom: 21px; padding: 0; background: #fff; }
+        .todo-row:last-child { margin-bottom: 0; }
+        .todo-text { flex: 1; min-width: 0; padding-right: 28px; text-align: right; overflow-wrap: anywhere; }
+        .todo-actions { display: flex; gap: 4px; flex-shrink: 0; }
+        .todo-actions .button { height: 29px; border: 0; border-radius: 1px; font-size: 12px; padding: 0 13px; }
+        .todo-actions .is-success { width: 54px; background: #48c78e; color: #fff; }
+        .todo-actions .is-danger { width: 62px; background: #f14668; color: #fff; }
+        .todo-actions .is-link.is-light { width: 66px; background: #eff5fb; color: #3e8ed0; }
+        .button:hover { filter: brightness(0.96); }
+        @media (max-width: 768px) {
+            .todo-app { width: 100%; padding-top: 24px; }
+            .todo-column + .todo-column { margin-top: 24px; }
         }
     </style>
 </head>
-<body class="has-background-light">
-    <section class="section">
-        <div id="app" class="container">
-            <h1 class="title has-text-centered">TODOアプリ</h1>
-
-            <div class="box">
-                <div class="field has-addons">
-                    <div class="control is-expanded">
-                        <input
-                            class="input"
-                            type="text"
-                            v-model="newTodo"
-                            @keyup.enter="addTodo"
-                            placeholder="please input todo"
-                        >
-                    </div>
-                    <div class="control">
-                        <button class="button is-primary" @click="addTodo">ADD TODO</button>
-                    </div>
-                </div>
+<body>
+    <main id="app" class="todo-app" v-cloak>
+        <form class="todo-entry" @submit.prevent="addTodo">
+            <div class="control is-expanded">
+                <input class="input" type="text" v-model="newTodo" placeholder="please input todo" aria-label="New TODO">
             </div>
-
-            <div class="columns is-variable is-5">
-                <div class="column">
-                    <div class="box">
-                        <h2 class="subtitle">
-                            incomplete items
-                        </h2>
-
-                        <div v-if="todos.length === 0" class="has-text-grey has-text-centered py-5">
-                            No incomplete items.
-                        </div>
-                        <div v-else class="content">
-                            <ul class="todo-list">
-                                <li v-for="(todo, index) in todos" :key="index">
-                                    <div class="is-flex is-justify-content-space-between is-align-items-center">
-                                        <span>{{ todo }}</span>
-                                        <span class="buttons are-small mb-0 ml-3">
-                                            <button class="button is-success" @click="completeTodo(index)">DONE</button>
-                                            <button class="button is-danger" @click="deleteTodo(index)">DELETE</button>
-                                        </span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="column">
-                    <div class="box">
-                        <h2 class="subtitle">
-                            complete items
-                        </h2>
-
-                        <div v-if="completeTodos.length === 0" class="has-text-grey has-text-centered py-5">
-                            No complete items.
-                        </div>
-                        <div v-else class="content">
-                            <ul class="todo-list">
-                                <li v-for="(todo, index) in completeTodos" :key="index">
-                                    <div class="is-flex is-justify-content-space-between is-align-items-center">
-                                        <span class="has-text-grey-light"><s>{{ todo }}</s></span>
-                                        <span class="buttons are-small mb-0 ml-3">
-                                            <button class="button is-link is-light" @click="returnTodo(index)">RETURN</button>
-                                            <button class="button is-danger" @click="deleteCompleteTodo(index)">DELETE</button>
-                                        </span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="control">
+                <button class="button is-primary" type="submit">ADD TODO</button>
             </div>
+        </form>
+        <div class="columns todo-columns">
+            <section class="column todo-column" aria-labelledby="incomplete-heading">
+                <h2 id="incomplete-heading" class="todo-heading">incomplete items</h2>
+                <ul class="todo-list">
+                    <li class="todo-row" v-for="(todo, index) in todos" :key="index">
+                        <span class="todo-text">{{ todo }}</span>
+                        <div class="todo-actions">
+                            <button class="button is-success is-small" @click="completeTodo(index)">DONE</button>
+                            <button class="button is-danger is-small" @click="deleteTodo(index)">DELETE</button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <section class="column todo-column" aria-labelledby="complete-heading">
+                <h2 id="complete-heading" class="todo-heading">complete items</h2>
+                <ul class="todo-list">
+                    <li class="todo-row" v-for="(todo, index) in completeTodos" :key="index">
+                        <span class="todo-text">{{ todo }}</span>
+                        <div class="todo-actions">
+                            <button class="button is-link is-light is-small" @click="returnTodo(index)">RETURN</button>
+                            <button class="button is-danger is-small" @click="deleteCompleteTodo(index)">DELETE</button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
         </div>
-    </section>
-
+    </main>
     <script src="./script/script.js"></script>
 </body>
 </html>
