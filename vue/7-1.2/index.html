@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODOアプリ | 7-1.2</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body class="has-background-light">
+    <section class="section">
+        <div id="app" class="container">
+            <h1 class="title has-text-centered">TODOアプリ</h1>
+
+            <div class="box">
+                <div class="field has-addons">
+                    <div class="control is-expanded">
+                        <input
+                            class="input"
+                            type="text"
+                            v-model="newTodo"
+                            @keyup.enter="addTodo"
+                            placeholder="please input todo"
+                        >
+                    </div>
+                    <div class="control">
+                        <button class="button is-primary" @click="addTodo">ADD TODO</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns is-variable is-5">
+                <div class="column">
+                    <div class="box">
+                        <h2 class="subtitle">
+                            <span class="tag is-warning mr-2">{{ todos.length }}</span>
+                            incomplete items
+                        </h2>
+
+                        <div v-if="todos.length === 0" class="has-text-grey has-text-centered py-5">
+                            No incomplete items.
+                        </div>
+                        <div v-else class="content">
+                            <ul>
+                                <li v-for="(todo, index) in todos" :key="index">
+                                    <div class="is-flex is-justify-content-space-between is-align-items-center">
+                                        <span>{{ todo }}</span>
+                                        <span class="buttons are-small mb-0 ml-3">
+                                            <button class="button is-success" @click="completeTodo(index)">DONE</button>
+                                            <button class="button is-danger is-light" @click="deleteTodo(index)">DELETE</button>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="box">
+                        <h2 class="subtitle">
+                            <span class="tag is-success mr-2">{{ completeTodos.length }}</span>
+                            complete items
+                        </h2>
+
+                        <div v-if="completeTodos.length === 0" class="has-text-grey has-text-centered py-5">
+                            No complete items.
+                        </div>
+                        <div v-else class="content">
+                            <ul>
+                                <li v-for="(todo, index) in completeTodos" :key="index">
+                                    <div class="is-flex is-justify-content-space-between is-align-items-center">
+                                        <span class="has-text-grey-light"><s>{{ todo }}</s></span>
+                                        <span class="buttons are-small mb-0 ml-3">
+                                            <button class="button is-link is-light" @click="returnTodo(index)">RETURN</button>
+                                            <button class="button is-danger is-light" @click="deleteCompleteTodo(index)">DELETE</button>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./script/script.js"></script>
+</body>
+</html>
