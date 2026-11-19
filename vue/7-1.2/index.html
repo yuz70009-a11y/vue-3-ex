@@ -7,6 +7,23 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .todo-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .todo-list li {
+            margin: 0;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .todo-list li:last-child {
+            border-bottom: 0;
+        }
+    </style>
 </head>
 <body class="has-background-light">
     <section class="section">
@@ -34,7 +51,6 @@
                 <div class="column">
                     <div class="box">
                         <h2 class="subtitle">
-                            <span class="tag is-warning mr-2">{{ todos.length }}</span>
                             incomplete items
                         </h2>
 
@@ -42,13 +58,13 @@
                             No incomplete items.
                         </div>
                         <div v-else class="content">
-                            <ul>
+                            <ul class="todo-list">
                                 <li v-for="(todo, index) in todos" :key="index">
                                     <div class="is-flex is-justify-content-space-between is-align-items-center">
                                         <span>{{ todo }}</span>
                                         <span class="buttons are-small mb-0 ml-3">
                                             <button class="button is-success" @click="completeTodo(index)">DONE</button>
-                                            <button class="button is-danger is-light" @click="deleteTodo(index)">DELETE</button>
+                                            <button class="button is-danger" @click="deleteTodo(index)">DELETE</button>
                                         </span>
                                     </div>
                                 </li>
@@ -60,7 +76,6 @@
                 <div class="column">
                     <div class="box">
                         <h2 class="subtitle">
-                            <span class="tag is-success mr-2">{{ completeTodos.length }}</span>
                             complete items
                         </h2>
 
@@ -68,13 +83,13 @@
                             No complete items.
                         </div>
                         <div v-else class="content">
-                            <ul>
+                            <ul class="todo-list">
                                 <li v-for="(todo, index) in completeTodos" :key="index">
                                     <div class="is-flex is-justify-content-space-between is-align-items-center">
                                         <span class="has-text-grey-light"><s>{{ todo }}</s></span>
                                         <span class="buttons are-small mb-0 ml-3">
                                             <button class="button is-link is-light" @click="returnTodo(index)">RETURN</button>
-                                            <button class="button is-danger is-light" @click="deleteCompleteTodo(index)">DELETE</button>
+                                            <button class="button is-danger" @click="deleteCompleteTodo(index)">DELETE</button>
                                         </span>
                                     </div>
                                 </li>
